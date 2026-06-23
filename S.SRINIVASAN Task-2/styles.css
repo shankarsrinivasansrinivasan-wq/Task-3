@@ -1,0 +1,234 @@
+
+:root {
+  /* Colors */
+  --bg: #0b0d10;
+  --surface: #111418;
+  --muted: #9aa3ae;
+  --text: #e6eaf0;
+  --primary: #5e8bff;
+  --primary-ink: #0a0f1a;
+  --accent: #2dd4bf;
+  --card: #14181d;
+  --border: #1f242b;
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+
+  /* Typography */
+  --font-sans: 'Inter', system-ui, -apple-system, Segoe UI, Roboto, Arial, sans-serif;
+  --fs-900: clamp(2rem, 5vw + 1rem, 3.5rem);
+  --fs-800: clamp(1.5rem, 3.2vw + 1rem, 2.25rem);
+  --fs-700: 1.5rem;
+  --fs-600: 1.25rem;
+  --fs-500: 1rem;
+  --fs-400: 0.9375rem;
+
+  /* Spacing */
+  --space-1: .25rem;
+  --space-2: .5rem;
+  --space-3: .75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --radius-1: .5rem;
+  --radius-2: .75rem;
+  --radius-3: 1rem;
+  --ring: 2px solid color-mix(in oklab, var(--primary), white 10%);
+}
+
+@media (prefers-color-scheme: light) {
+  :root {
+    --bg: #f6f7fb;
+    --surface: #ffffff;
+    --muted: #596273;
+    --text: #0e1220;
+    --primary: #355dff;
+    --primary-ink: #ffffff;
+    --accent: #0fb9b1;
+    --card: #ffffff;
+    --border: #e6e9f0;
+    --shadow: 0 10px 30px rgba(18, 28, 45, .08);
+  }
+}
+
+/* =====================
+   Base
+===================== */
+* { box-sizing: border-box; }
+html:focus-within { scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: var(--font-sans);
+  color: var(--text);
+  background: radial-gradient(1200px 600px at 10% -10%, rgba(94,139,255,.15), transparent 50%),
+              radial-gradient(1000px 500px at 110% 10%, rgba(45,212,191,.12), transparent 50%),
+              var(--bg);
+  line-height: 1.6;
+}
+
+img { max-width: 100%; display: block; border-radius: var(--radius-2); }
+
+.container {
+  width: min(1120px, 92%);
+  margin-inline: auto;
+}
+
+.section { padding: clamp(3rem, 6vw, 5rem) 0; }
+.section-accent { background: linear-gradient(180deg, color-mix(in oklab, var(--surface), transparent 60%), transparent); }
+.section-head { margin-bottom: var(--space-6); }
+.section-head h2 { font-size: var(--fs-800); margin: 0 0 var(--space-2); letter-spacing: -0.02em; }
+.section-head p { color: var(--muted); margin: 0; }
+
+.muted { color: var(--muted); }
+.lead { font-size: var(--fs-600); color: var(--muted); }
+
+/* Skip link */
+.skip-link {
+  position: absolute; left: -9999px; top: auto;
+}
+.skip-link:focus {
+  left: 1rem; top: 1rem; z-index: 9999;
+  background: var(--surface); color: var(--text);
+  padding: .5rem .75rem; border-radius: var(--radius-1);
+  outline: var(--ring);
+}
+
+/* =====================
+   Header/Nav
+===================== */
+.site-header {
+  position: sticky; top: 0; z-index: 100;
+  backdrop-filter: saturate(120%) blur(10px);
+  background: color-mix(in oklab, var(--surface), transparent 35%);
+  border-bottom: 1px solid var(--border);
+}
+.header-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: .85rem 0;
+}
+.brand { display: inline-flex; align-items: center; gap: .6rem; text-decoration: none; color: inherit; }
+.brand-mark { color: var(--accent); font-size: 1.25rem; }
+.brand-text { font-weight: 700; letter-spacing: .2px; }
+
+.site-nav ul { list-style: none; display: flex; gap: .75rem; margin: 0; padding: 0; }
+.site-nav a {
+  text-decoration: none; color: var(--text);
+  padding: .5rem .75rem; border-radius: .5rem;
+}
+.site-nav a:hover { background: color-mix(in oklab, var(--surface), transparent 60%); }
+
+/* =====================
+   Hero
+===================== */
+.hero { padding: clamp(4rem, 8vw, 7rem) 0; }
+.hero-inner { display: grid; grid-template-columns: 1.3fr 1fr; gap: var(--space-6); align-items: center; }
+.hero h1 { font-size: var(--fs-900); line-height: 1.1; margin: 0 0 var(--space-4); letter-spacing: -0.03em; }
+.hero-copy .hero-ctas { display: flex; gap: .75rem; margin-top: var(--space-4); flex-wrap: wrap; }
+.hero-media img { height: 100%; width: 100%; object-fit: cover; }
+
+@media (max-width: 900px) {
+  .hero-inner { grid-template-columns: 1fr; }
+}
+
+/* =====================
+   Buttons/Chips/Links
+===================== */
+.btn {
+  --btn-bg: color-mix(in oklab, var(--surface), transparent 20%);
+  --btn-fg: var(--text);
+  display: inline-flex; align-items: center; justify-content: center;
+  font-weight: 600; letter-spacing: .2px;
+  padding: .65rem 1rem; border-radius: .65rem;
+  background: var(--btn-bg); color: var(--btn-fg);
+  text-decoration: none; border: 1px solid var(--border);
+  transition: transform .12s ease, background .2s ease, box-shadow .2s ease;
+  box-shadow: 0 1px 0 rgba(255,255,255,.02) inset;
+}
+.btn:hover { transform: translateY(-2px); }
+.btn:focus-visible { outline: var(--ring); outline-offset: 2px; }
+.btn-primary { --btn-bg: var(--primary); --btn-fg: var(--primary-ink); border-color: color-mix(in oklab, var(--primary), black 20%); }
+
+.text-link { color: var(--primary); text-decoration: none; font-weight: 600; }
+.text-link:hover { text-decoration: underline; }
+
+.chip-list { display: flex; gap: .5rem; flex-wrap: wrap; padding: 0; margin: var(--space-3) 0 0; list-style: none; }
+.chip { font-size: .85rem; padding: .35rem .6rem; border-radius: 999px; border: 1px solid var(--border); background: color-mix(in oklab, var(--surface), transparent 20%); color: var(--muted); }
+
+/* =====================
+   Grids/Cards
+===================== */
+.grid { display: grid; gap: var(--space-6); }
+.projects-grid { grid-template-columns: repeat(3, 1fr); }
+@media (max-width: 1000px) { .projects-grid { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 640px)  { .projects-grid { grid-template-columns: 1fr; } }
+
+.card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-3);
+  overflow: hidden; box-shadow: var(--shadow);
+}
+.card-media img { aspect-ratio: 16/10; }
+.card-body { padding: var(--space-5); }
+.card-title { margin: 0 0 .25rem; font-size: var(--fs-700); letter-spacing: -.02em; }
+.card-text { margin: 0.25rem 0 0; color: var(--muted); }
+.card-actions { display: flex; gap: 1rem; margin-top: var(--space-4); }
+
+/* =====================
+   Skills
+===================== */
+.skills { list-style: none; padding: 0; display: grid; gap: .75rem; }
+.skills li { background: color-mix(in oklab, var(--surface), transparent 30%); border: 1px solid var(--border); padding: .85rem 1rem; border-radius: var(--radius-2); }
+
+/* =====================
+   Timeline
+===================== */
+.timeline { display: grid; gap: var(--space-5); border-left: 2px solid var(--border); padding-left: var(--space-5); }
+.timeline-item { position: relative; }
+.timeline-item::before {
+  content: '';
+  position: absolute; left: calc(-1 * (var(--space-5))); top: .4rem;
+  width: .85rem; height: .85rem; border-radius: 999px; background: var(--accent);
+  box-shadow: 0 0 0 6px color-mix(in oklab, var(--accent), transparent 85%);
+}
+.timeline h3 { margin: 0; font-size: var(--fs-600); }
+.timeline .muted { margin: .15rem 0 .5rem; }
+.timeline ul { margin: 0; padding-left: 1rem; }
+
+/* =====================
+   About
+===================== */
+.about { display: grid; grid-template-columns: 1.2fr 1fr; gap: var(--space-6); align-items: center; }
+.about p { margin: 0 0 .75rem; }
+@media (max-width: 900px) { .about { grid-template-columns: 1fr; } }
+
+/* =====================
+   Contact
+===================== */
+.contact { display: flex; align-items: center; justify-content: space-between; gap: var(--space-6); }
+.contact-actions { display: flex; gap: .75rem; flex-wrap: wrap; }
+@media (max-width: 720px) { .contact { flex-direction: column; align-items: flex-start; } }
+
+/* =====================
+   Footer
+===================== */
+.site-footer {
+  border-top: 1px solid var(--border);
+  padding: 2rem 0 3rem;
+}
+.footer-inner { display: flex; align-items: center; justify-content: space-between; gap: 1rem; }
+.footer-inner p { margin: 0; color: var(--muted); }
+.social { list-style: none; display: flex; gap: 1rem; padding: 0; margin: 0; }
+.social a { color: var(--muted); text-decoration: none; }
+.social a:hover { color: var(--text); }
+
+/* =====================
+   Accessibility/Focus
+===================== */
+:where(a, button, [tabindex]) { outline: none; }
+:where(a, button, .btn, .text-link):focus-visible { outline: var(--ring); outline-offset: 2px; border-radius: .5rem; }
+
+/* Motion */
+@media (prefers-reduced-motion: reduce) {
+  * { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; scroll-behavior: auto !important; }
+}
