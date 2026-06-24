@@ -19,5 +19,6 @@ Styling: CSS is used to create a professional, modern design with consistent col
 Responsiveness: The layout adapts to different devices, ensuring accessibility on mobile and desktop.
 
 Purpose:The portfolio demonstrates both technical ability and personal branding. It acts as a professional hub where employers, colleagues, or clients can quickly understand my capabilities and view my 
+
 🌐 Live demo Github
 page:https://benevolent-arithmetic-cf016d.netlify.app/
